@@ -1,0 +1,144 @@
+Scenario One:
+=============
+ 1. git clone
+ 2. cd projectfolder
+ 3. ls
+ 4. git branch (master branch) or git branch -a 
+ 5. git checkout develop (develop/feature branch)
+ 6. git pull (Take latest changes)
+ 7. git status (Red mark files seen)
+ 8. git add . (Files added in Project)
+ 9. git commit -m "Modified Kubernetes Version"
+10. git push (Changes reflected in GitHub-Central Repository)
+
+
+Scenario Two:
+=============
+ 1. git clone
+ 2. cd projectfolder
+ 3. ls
+ 4. git branch (master branch) or git branch -a
+ 5. git checkout feature (develop/feature branch)
+ 6. git pull (Take latest changes)
+ 7. ls (Check for POM.xml or NPM files)
+ 8. mvn clean install or mvn clean install -DskipTests=true
+ 9. Jar file created (Check in Target Folder)
+10. Deploy & Run the applications in Docker container (Server)
+11. http://localhost:9090/login (Checking whether application main page is loading or not)
+12. DevOps new changes added
+13. mvn clean install or mvn clean install -DskipTests=true
+14. Jar file created (Check in Target Folder)
+15. Deploy & Run the applications in Docker container (Server)
+16. git status (Red mark files seen)
+17. git add . (Files added in Project)
+18. git commit -m "Modified Kubernetes Version" (Before/After commit additional info use git tags for versions - Optional)
+19. git push (Changes reflected in GitHub-Central Repository)
+20. In GitHub raise PR (Feature --> Develop/Master) (PullRequest/MergeRequest)
+21. Approvals needed & added
+22. Feature branch code merged with Develop/Master branch.
+
+
+Scenario Three:
+===============
+ 1. git clone
+ 2. cd projectfolder
+ 3. ls
+ 4. git branch (master branch) or git branch -a
+ 5. git checkout feature (develop/feature branch)
+ 6. git pull (Take latest changes)
+ 7. ls (Check for POM.xml or NPM files)
+ 8. mvn clean install or mvn clean install -DskipTests=true
+ 9. Jar file created (Check in Target Folder)
+10. Deploy & Run the applications in Docker container (Server)
+11. http://localhost:9090/login (Checking whether application main page is loading or not)
+12. Devloper new changes added
+13. mvn clean install or mvn clean install -DskipTests=true
+14. Jar file created (Check in Target Folder)
+15. Deploy & Run the applications in Docker container (Server)
+16. Convey the message to developer that application deployed successfully and ask him to verify the latest changes.
+
+
+Scenario Four:
+==============
+ 1. git clone
+ 2. cd projectfolder
+ 3. ls
+ 4. git branch (master branch) or git branch -a
+ 5. git checkout feature (develop/feature branch)
+ 6. git pull (Take latest changes)
+ 7. ls (Check for POM.xml or NPM files)
+ 8. mvn clean install or mvn clean install -DskipTests=true
+ 9. Jar file created (Check in Target Folder)
+10. ls (Check for Dockerfile)
+11. docker build
+12. docker images ( Check for docker images create or not)
+13. docker tag
+14. docker commit (Optional)
+15. docker run (Creates Docker Container)
+16. docker ps (Only shows running containers) or docker ps -a ( Run or stopped containers)
+17. Deploy & Run the applications in Docker container (Server)
+18. http://localhost:9090/login (Checking whether application main page is loading or not)
+19. DevOps engineer new changes added
+20. mvn clean install or mvn clean install -DskipTests=true
+21. Jar file created (Check in Target Folder)
+22. ls (Check for Dockerfile)
+23. docker build
+24. docker images ( Check for docker images create or not)
+25. docker tag
+26. docker commit (Optional)
+27. docker run (Creates Docker Container)
+28. docker ps (Only shows running containers) or docker ps -a ( Run or stopped containers)
+22. Deploy & Run the applications in Docker container (Server)
+23. git status (Red mark files seen)
+24. git add . (Files added in Project)
+25. git commit -m "Modified Kubernetes Version" (Before/After commit additional info use git tags for versions - Optional)
+26. git push (Changes reflected in GitHub-Central Repository)
+27. In GitHub raise PR (Feature --> Develop/Master) (PullRequest/MergeRequest)
+28. Approvals needed & added
+29. Feature branch code merged with Develop/Master branch.
+
+
+Scenario Five:
+==============
+ 1. git clone
+ 2. cd projectfolder
+ 3. ls
+ 4. git branch (master branch) or git branch -a
+ 5. git checkout feature (develop/feature branch)
+ 6. git pull (Take latest changes)
+ 7. ls (Check for POM.xml or NPM files)
+ 8. mvn clean install or mvn clean install -DskipTests=true
+ 9. Jar file created (Check in Target Folder)
+10. ls (Check for Dockerfile)
+11. docker build
+12. docker images ( Check for docker images create or not)
+13. docker tag
+14. docker commit (Optional)
+15. docker run (Creates Docker Container)
+16. docker ps (Only shows running containers) or docker ps -a ( Run or stopped containers)
+17. Deploy & Run the applications in Docker container (Server)
+18. http://localhost:9090/login (Checking whether application main page is loading or not)
+19. Devloper new changes added
+20. mvn clean install or mvn clean install -DskipTests=true
+21. Jar file created (Check in Target Folder)
+22. ls (Check for Dockerfile)
+23. docker build
+24. docker images ( Check for docker images create or not)
+25. docker tag
+26. docker commit (Optional)
+27. docker run (Creates Docker Container)
+28. docker ps (Only shows running containers) or docker ps -a ( Run or stopped containers)
+22. Deploy & Run the applications in Docker container (Server)
+24. Convey the message to developer that application deployed successfully and ask him to verify the latest changes.
+
+
+
+
+
+
+
+
+
+
+
+

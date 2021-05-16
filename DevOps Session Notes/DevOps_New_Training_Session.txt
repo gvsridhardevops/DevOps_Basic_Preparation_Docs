@@ -1,0 +1,63 @@
+Old format of Build & Release - Manual Deployment into Servers
+Java/.Net + SVN/CVS (Version Control Tools (SCM - Source Code Management Tool) + Build with ANT Tool + Server (Tomcat/Web-Logic/WAS) - Deploy (Manual Deployment Process)
+
+Latest format Deployment Architechture - Manual/Automated Deployments - DevOps Engineer
+Java/.Net + GIT/GitHub/BitBucket (Version Control Tool) (SCM - Source Code Management Tool) + Build with MAVEN Tool + Server (Docker) - Deploy (Manual & Automated Deployment Process)
+
+SCM - Repos (Master/Develop/Feature/Release/HotFixes) - SCM Branching Strategy
+
+What is DevOps = Dev + Ops
+Why is DevOps = Continuous Integration / Continuous Deployment / Continuous Delivery / Continuous Testing /Continuous Monitoring
+How to use DevOps = By using DevOps Tools we can implement DevOps ( Maven/GIT/Jenkins/Docker/Kubernetes/Ansible/ELK )
+
+Continuous Integration = Java/Maven/GIT/SonarQube/JMeter/Artifactory/Credentials/Security -> Added Plugins into Jenkins - CI Part - ( Automated CI + Manual CD )
+Continuous Delivery = Docker/Kubernetes/Ansible -> Added Plugins into Jenkins - CD Part ( Automated CI + Automated CD )
+Continuous Testing = SonarQube/Selenium/Cucumber -> Added Plugins into Jenkins - CT Part
+Continuous Monitoring = Nagios/Grafana/Kibana/Prometues -> Added Plugins into Jenkins - CM Part
+Continuous Deployment = ( CI + CD = Maven/GIT/Jenkins + Docker/Kubernetes/Ansible )
+
+Continuous Deployment = ( Continuous Integration + Continuous Delivery )
+Continuous Deployment = ( Continuous Integration + Continuous Deployment + Continuous Testing + Continuous Monitoring )
+
+Jenkins Pipeline --> ( CI + CT + CD + CM ) = Continuous Delivery
+
+======================================================================================================================================
+
+On-Premise Platform Setup
+=========================
+On-Premise --> Local Platform -> Laptop = OS + Networking Adaptors + Drivers + Disk Management + Software Installations
+
+On-Premise DevOps Setup
+=======================
+Ant/Maven -> Build Tools
+SVN/GIT -> Source Code Management Tools
+Bamboo/TeamCity/Hudson/Gitlab/Jenkins -> CICD Tool ( Continuous Integration / Continuous Deployment )
+Docker -> Containerization = ( VM + Server ) -> Creating Containers
+Mesos/Docker Swarm/Kubernetes -> Container Ochestration -> Managing Containers
+Chef/Puppet/Ansible -> COnfiguration Management Tool
+
+Cloud DevOps Setup
+==================
+AWS Cloud Formation/Terraform -> Infrastructure As Code ( IAC )
+AWS -> Azamon Web Services -> Cloud Platform
+Azure -> Azure Portal -> Cloud Platform
+
+
+
+========================================================================
+Job Requirements:
+DevOps - Hot Cake
+DevOps + Cloud ( AWS/Azure ) - Super Hot Cake
+AWS/Azure + Terraform - Duper Hot Cake
+DevOps + AWS/Azure + Terraform - Super Duper Hot Cake -Block Buster
+
+On-Premise Platform Setup
+=========================
+On-Premise --> Local Platform -> Laptop = OS + Networking Adaptors + Drivers + Disk Management + Software Installations
+
+Cloud Platform Setup
+====================
+AWS/Azure --> Cloud Platform -> VM + VNet + Subnet + Gateways + Security Groups + Disk Management ( IAAS - Infrastructure As A Service )
+                             -> Maven/GIT/Jenkins/Docker/Kubernetes/Ansible - Setting Up DevOps Tools - ( PAAS - Platform As A Service ) 
+							 -> Software Installations ( Office 365 etc. ) - ( SAAS - Software As A Service )
+

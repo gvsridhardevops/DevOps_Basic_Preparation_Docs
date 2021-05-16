@@ -1,0 +1,43 @@
+Basic & Generic DevOps Questions:
+=================================
+Can you brief about your experience? (Tell Me about your self)
+What are your day to day activities?
+What image your roles & responsibilities?
+Can you explain about your current project?
+What are the challenging work you come across your project or in devops?
+Can you explain about the real-time issues you faced in your project recently?
+
+MAVEN:
+======
+Can you explain about MAVEN WorkFlow?
+What is the difference between ANT & MAVEN?
+What is the difference between pom.xml vs settings.xml?
+Can you explain about POM.xml & its components?
+Can you explain few MAVEN Commands?
+
+GIT: 
+====
+Can you explain about GIT WorkFlow?
+Can you explain about your current branching strategy?
+What is the difference between SVN & GIT?
+What is the difference between Fetch & Pull?
+What is the difference between Merge & Rebase?
+Can you explain few GIT Commands?
+
+Jenkins:
+========
+Can you explain about end-to-end CICD in your project?
+Can you explain about stages of your CICD Pipeline?
+Can you explain about your current Environment? 
+What is the difference between Declarative Pipeline & Scripted Pipeline?
+
+Docker:
+=======
+Can you explain about flow of Docker Architecture?
+Can you explain about Docker Features?
+Can you explain about Docker Components?
+What is the difference between VM & Containerisation?
+Can you explain about Docker Deployment Flow?
+Can you explain about few Docker Commands?
+Can you explain about Docker File?
+What is the difference between Docker File & Docker Compose File?

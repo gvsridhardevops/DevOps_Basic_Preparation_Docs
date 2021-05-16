@@ -1,0 +1,46 @@
+Give a basic introduction of your profess career, day-to-day activities & your roles and resposibilites:
+========================================================================================================
+Hi, Good Morning....Myself Venkata Sridhar, 
+Coming to my professional career, I am having overall 10 years of experience in IT Industry 
+and currenlty working as a Devops Lead Engineer in XYZ Company from last 2 years.
+
+In the initial days of my career I started as a Build-Release Engineer and slowly moved to DevOps Technology.
+
+So, I am having 6 years of relevant experience as a DevOps Engineer and as a devops engineer, 
+I worked on multiple DevOps Tools for deployments and integrations like GIT/MAVEN/Jenkins as CI Tools and Docker/Kubernetes as a CD Tools.
+
+And I involved in developing end-to-end CICD pipelines using Jenkins and involved in deploying applications on on-premises & cloud platform as well.
+
+Also I am having 2 years of experience on docker as a containerisation & kubernetes as a Orchestration tool.
+I involved in implementing docker files for creating images and created kubernates YAML files for deployments and managing containers.
+
+Also from last one year I got an oppurtunity to work on Cloud Platform like AWS.
+In AWS, I worked on few Services like VPC, EC2 creations and S3 bucket for storage data.
+And also worked with EKS (Elastic Kubernetes Services) for deploying few micro-services applications on AWS Cloud.
+
+
+Explain about your current roles & responsibilities:
+====================================================
+Coming to my roles & resposibilites are
+I act as a Individual contributor and also as a Devops Lead Engineer, I will be mentoring the devops team of size 4 members.
+I will be taking care of all devops activities, implementations and involve in deployments.
+and also I will be helping my devops team incase of any deployment issues, troubleshooting and finding the root cause on issues.
+
+
+Explain about your current project:
+===================================
+My current project is HomeDepot Client, it is an retial domain and e-commerce application.
+So here we will be having few java micro-services as backend applications and reactjs applications as frontend applications.
+So we will be deploying these microservices on on-premises and cloud platfrom.
+
+
+Explain about Day-To-Day Activities:
+====================================
+So my day-to-day activities are like 
+we are following Agile methodology, so for every sprint we will be assigning with JIRA Tasks. We have 2 sprints per month.
+And I will be interaacting with client meetings, sprint planning and grooming sessions. And also invovling in Status calls to provide daily updates.
+So I will be part of handling all the devops activities and deployment activities.
+Generally I involve in handling and managing the git repositories and creating new repos incase of any new requirments comes.
+And also involving in creating CI/CD pipelines using Jenkins Tool.
+And finally I will also involve in handling containers using docker and managing/orchestrating those containers by using Kubernetes.
+And also implements docker files, kubernetes yaml files for application deployments.

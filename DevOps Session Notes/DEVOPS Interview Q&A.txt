@@ -1,0 +1,63 @@
+Kubernetes Interview Questions:
+===============================
+ 1. Explain about Kubernetes Building Blocks or K8S Architecture? Done
+ 2. Expalin about Kubenetes Master Architecture or Components? Done
+ 3. Explain about Kubernetes Slave Architecture or Components? Done
+ 4. What is NGINX in Kubernetes? Done
+ 5. What is Ingress/Egress in Kubernetes? What are advantages of Ingress/Egress? Done
+ 6. What to manage large no. of applications in K8S?
+ 7. How to create customized secrets in Kubenetes? Done
+ 8. What is Kube-System, Kubeadm, Kubelet, etcd & Kubeproxy? Done
+ 9. How to handle load balancing in Kubernetes? Done
+10. How to enable Auto-Scaling? - Done
+11. What is MiniKube? Done 
+12. What are deployment Strategies in Kubernetes?
+13. How to identify issues in Kubernetes? 
+14. What is difference between Liveness Probes & ReadinessProbes? Done
+15. What is statefulset in Kubernetes? Done
+16. What is POD & how to configure PODS in K8S? Done
+17. What is Piller POD in K8S?
+18. Explain about Deployment Steps in K8S for deploying any application? - Done
+19. How to create a POD in K8S? - Done
+20. What is ConfigMap in K8S and how to configure ConfigMap?
+21. What are storage volumes in K8S & how to create PV & PVC?
+22. Can you explain any real-time issues in K8S?
+23. How to validate Kubernetes by using validators?
+24. What are the features of Kubernetes?
+25. What is difference between Kubernetes & Docker Swarm?
+26. What are core kubernetes Objects?
+27. What is Replication Controller in Kubernetes?
+28. What are federated Clusters in K8S? What is the benefits of Federated Cluster? Multiple Clusters that are managed as a single cluster.
+29. how to delete multiple PODS in Kubernetes? By using Replication Controllers?
+30. What is namespace in K8S and how to create Namespaces in K8S?
+31. Define Heapster in Kubernetes?
+32. What are Deamon Sets in K8S?
+33. Mention the types of controller managers? Endpoints Controller, Service Accounts Controller, Node Controller, Namespace Controller, Replication Controller & Token Controller.
+34. What are the tools that are used for container monitoring? Grafana, Prometheus, Heapster & InfluxDB.
+35. List out some important Kubectl commands?
+
+Docker Interview Questions:
+===========================
+ 1. Briefly explain about Docker?
+ Ans: Dockers are used for containarization and used to create containers. Containers are nothing but lightweight, poratable, flexible & platform independent.
+ 2. What are containers & why we use docker containers?
+ 3. What are Docker Components?
+ 4. Can you explain about Docker Workflow?
+ 5. Explain about Docker Architecture?
+ 6. How can we optimize Docker Containers?
+ 7. How can we do memory management for docker containers?
+ 8. What is Docker Engine and its benefits?
+ 9. What is DockerD or DockerDeamon? What is the use of DockerDeamon? Deamon is mainly used to manage the containers & images on same docker host.
+10. What are the features of Docker Container?
+11. What is docker file and explain about docker file components? or Can you explain about Docker Layer/structure?
+12. How to check running containers in Docker?
+13. Can we restart/kill/pause/delete docker containers?
+14. Can we create a docker image as Root User? Yes we can do that, but not a good practise to do.
+15. Explain about Deployment Steps in Docker for deploying any application?
+16. What is Docker compose file and its benefits?
+17. How to handle multiple containers in Docker?
+18. Scenario like if docker file modified then re-run the deployment steps it will start executing from beginning steps or not? Yes
+19. What is the usage of Dangling, Inspect & Prune in docker?
+20, What is -it & -d in docker?
+
+

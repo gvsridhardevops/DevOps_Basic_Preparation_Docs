@@ -1,0 +1,300 @@
+Steps to Install Local Development Environment Setup for Kubernetes using Minikube:
+
+Pre-Requisites:
+
+1. For Windows, install VirtualBox or Hyper-V first      - https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v
+2. Installing the Chocolatey Package manager for Windows - https://medium.com/@JockDaRock/installing-the-chocolatey-package-manager-for-windows-3b1bdd0dbb49
+														   https://medium.com/@JockDaRock/minikube-on-windows-10-with-hyper-v-6ef0f4dc158c
+														   
+3. Minikube is distributed in binary form: GitHub Repo. Download the minikube-installer.exe file, and execute the installer.
+
+4. If needed, add C:\Program Files (x86)\Kubernetes\minikube or similar to the PATH (in System Settings > Environment Variables)
+
+5. Test that minikube works: minikube (Commond Prompt - CMD) - http://john-cd.com/cheatsheets/Containers/Minikube_Install_on_Windows/
+														   												   
+
+// Install Minikube
+cacho install minikube
+
+// Verify that minikube is properly installed
+minikube version
+
+// Install Kubernetes-CLI
+choco install kubernetes-cli
+
+// Verify that kubectl is properly installed
+kubectl version
+
+//Run the command to install Kubectl
+curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.10.0/bin/windows/amd64/kubectl.exe
+
+// Start Minikube
+minikube start
+
+//VirtualBox Driver Start
+minikube start — vm-driver=docker
+
+// Check Minikube status
+minikube status
+
+// View Kubernetes Dashboard
+minikube dashboard
+
+// View Kubernetes Version
+kubectl version
+
+// View Kubernetes Cluster Information
+kubectl cluster-info
+
+// View the nodes that can be used to host your applications
+kubectl get nodes 
+
+// Create a new deployment
+kubectl create deployment hello-minikube --image=k8s.gcr.io/echoserver:1.4	(OR)
+kubectl run hello-minikube --image=k8s.gcr.io/echoserver:1.4 --port=8080
+
+kubectl create deployment hello-nginx --image=nginx --port=80
+kubectl run hello-nginx --image=nginx --port=80
+
+kubectl run docker-demo --image=gvsridhardevops/docker-demo --port=8081
+kubectl run docker-demo --image=gvsridhardevops/docker-demo:0.0.1-SNAPSHOT --port=8080
+
+// List the deployments
+kubectl get deployments 
+
+// Expose the deployment to an external IP
+kubectl expose deployment hello-minikube --type=NodePort --port=8080 (OR)
+kubectl expose deployment hello-minikube --type=NodePort
+kubectl expose deployment docker-demo --type=NodePort --port=8081
+kubectl expose deployment hello-nginx --type=NodePort --port=80
+kubectl expose deployment hello-nginx --type=NodePort service “hello-nginx” exposed
+
+//To run a deployment file on kubernetes from docker hub
+kubectl run docker-demo --image=gvsridhardevops/docker-demo --port=8081
+
+// Scaling the services
+kubectl scale --replicas=3 deployment/hello-nginx
+kubectl get deployment
+
+kubectl scale --replicas=3 deployment/hello-minikube
+kubectl get deployment
+
+// View the K8s services
+kubectl get services
+
+// View the URL that you can hit via browser
+minikube service hello-minikube --url
+
+// View the K8s pods in the cluster
+kubectl get pods
+
+// View the details of a specific resource
+kubectl describe svc hello-minikube
+
+// Delete the service and deployment
+kubectl delete service,deployment hello-minikube
+
+// Shut down the Minikube cluster
+minikube stop
+
+===========================================================================================
+Docker File Workflow:
+=====================
+1. Client/Developer/DevOps Engineer creates a docker file 
+2. Then builds the docker file with docker BUILD command
+3. Docker file creates docker images
+4. Docker images to be tag to docker hub/docker registry with docker TAG command
+5. Docker images commit to docker hub/docker register with docker COMMIT command
+6. Docker images push to docker hub/docker register with docker PUSH command
+7. Run the docker images from dockerhub/docker register with docker RUN command
+8. Docker container created and application deployed on the server.
+9. Finally hit the URL EndPoint (http://localhost:8080) in browser to check the application page loaded or not.
+===============================================================================================================
+
+=============================
+Docker Architecture Workflow:
+=============================
+1. Client/Developer/DevOps Engineer creates a docker file
+2. When client BUILD, PULL/PUSH & RUN the docker file
+3. Then the communication between Client & Docker Engine enabled with REST API EndPoint.
+4. Then docker daemon will communicate with docker host to identify the docker images.
+4. Docker images will be tagged (to docker hub/docker register with docker TAG command)
+5. Docker images will be committed (to docker hub/docker register with docker COMMIT command)
+6. Docker images will be pushed (to docker hub/docker register with docker PUSH command)
+7. Once we run the docker images (from dockerhub/docker register with docker RUN command)
+8. then docker container will be created and application deployed on the server.
+9. All these above process will be taken care by Docker Engine.
+9. Finally hit the URL EndPoint (http://localhost:8080) in browser to check the application page loaded or not.
+===============================
+
+
+===============================
+After entering into the Company
+===============================
+
+1. New Project Starts with KT
+2. Provides Access to all tools, technologies & links
+3. Open Jira & check the tasks
+4. Create a FEATURE Branch in GIT (feature/example123)
+5. Clone the git project with git URL, by defualt Master Branch will be cloned to local repository.
+6. Change from master/develop to Feature/branchname and then start with work.
+7. Import porject in IDE (Eclipse/IntelliJ/VisualStudio)
+8. Clean build the project (mvn clean install) it will download all dependencies & plugins.
+9. Next start with DevOps developer changes based on JIRA Tasks (By creating Docker/Kubernetes files)
+10. Check whether the local changes are working fine or not (mvn clean install)
+11. Then local deployment success and application running fine.
+12. Then add the files, commit the files & push the files to GIT repository. (All these changes reflect into Feature/branchname)
+13. Similarly the same deployments will be done for Dev/QA/Staging Environments.
+14. Finally if everything goes fine till (feature/branchname), then raise PR (Pull Request --> from Feature/branchname to Develop Branch)
+15. Then Merge the Request (MR) with lead approvals.
+
+===================================================
+dockerclient --> RestAPI EndPoint --> dockerServer
+Application --> ExposeEndPoint --> Docker COntainer
+Node --> NodePort --> Node
+Container --> IP/HOST/PORT --> Container
+Cluster --> Ingress/Egress --> Cluster
+
+Java File --> Docker File
+Class file --> docker images
+
+Java Main Method --> Docker File ENTRYPOINT
+
+GITHub --> DockerHub
+GIT Files --> Docker Images
+GIT Commit --> Docker Commit
+
+Docker file will create docker images
+Docker images will create docker containers
+===================================================
+
+docker ps
+docker build -t docker-demo .
+docker images
+docker tag docker-demo gvsridhardevops/docker-demo
+docker push gvsridhardevops/docker-demo
+docker images
+docker run -p 8080:8080 gvsridhardevops/docker-demo
+docker push gvsridhardevops/docker-demo
+docker images
+docker rmi docker-demo gvsridhardevops/docker-demo
+
+======================================================
+
+kubectl version
+kubectl cluster-info
+kubectl get nodes
+kubectl create deployment docker-demo --image=gvsridhardevops/docker-demo --port=8082
+kubectl run docker-demo --image=gvsridhardevops/docker-demo --port=8081
+kubectl get deployments
+kubectl expose deployment docker-demo --type=NodePort --port=8081
+kubectl get services
+kubectl describe svc hello-minikube
+kubectl scale --replicas=3 deployment/docker-demo
+
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.3/aio/deploy/recommended.yaml
+kubectl proxy
+http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/#!/login
+kubectl get secrets -n kube-system
+kubectl describe secret -n kube-system kubernetes-dashboard-token-x4gnb
+
+https://rominirani.com/tutorial-getting-started-with-kubernetes-on-your-windows-laptop-with-minikube-3269b54a226
+
+====================================================================================================================
+IAAS – Infrastucture As A Service
+	 Azure Virutal network or AWS VPC (Virtual Private Cloud)
+		Subnet
+		Network gateway
+		Network security group
+		Route table
+	 Azure Virtual machine or AWS EC2 (Elastic Compute Cloud)
+		Disk Management
+		Security
+		IAM Roles
+		Networking
+	 Azure Storage Connectivity or AWS S3 Storage
+
+PAAS – Platform As A Service
+	   Configure Application Services
+	   Configure Database Services
+	   Configure DevOps Tools (Azure DevOps/AWS CodePipelines)
+			  Cloud Containers (Azure --> Azure Containers Services/Registries (ACS/ACR) & AWS --> Elastic Container Services/Registries (ECS/ECR)) [On-Premises Docker Containers]
+	          Cloud Kubernetes (Azure --> Azure Kubernetes Services (AKS) & AWS --> Elastic Kubernetes Services (EKS)) [On-Premises Kubernetes]
+			  Monitoring (Azure Monitoring & AWS CLoudWatch) [ ELK Stack (ElasticSearch + Logstash + Kibana)]
+
+SAAS – Software As A Service
+		OS Related Software Installations (Office 365, WAR)
+		
+IAAC - Infrastructure as a Code
+		Terraform/CloudFormation
+
+
+ELK Stack
+1.	Elastic Search
+2.	Logstash
+3.	Kibana
+
+Agile Methology 
+	Scrum Meetings  Status Update for Yesterday’s & Today’s (Please Mention Blockers)
+	Sprints (Monthly we work on 2 Sprints) – 4 to 5 User Stories (User Points – Max 8 Points)
+	Grooming Sessions  Understanding & Doubts Clarification on Current Sprint User Stories
+	Estimations Planning Sessions  On Current User Stories
+	Backlog/Refinement Session  User Story moves to next Sprint) on User Stories 
+	Sprint Demo Session  Current Sprint Demo Session.
+	Retrospective Session  Any problems faced in current Sprint (What went well/Not well)
+
+================================================
+GIT Branching Strategy
+	Master
+	Develop
+	Feature/develop-sprint1
+	Feature/user1-DevOps - Working
+	Feature/user2-Java 
+	Feature/user3-Tester
+================================================
+Azure Virtual Network
+Azure Virtual Machines
+Azure Virtual Network Routing Tables
+Azure Virtual Network VNET Peering
+Azure Virtual Network Service & Private EndPoints
+Azure Virtual Network Load Balancers
+Azure Virtual Network Application Gateway
+Azure Virtual Network Traffic Manager & Point to Site VPN
+Azure Virtual Site-to-Site VPN
+Azure Storage
+==============================================================
+
+===================================================
+YAML --> Yet Another Markup Language --> yml
+dockerfile --> is to create single container
+docker compose file --> is to create multiple containers
+========================================================
+
+Kubernetes Interview Questions:
+
+ 1. Explain about Kubernetes Building Blocks or K8S Architecture?
+ 2. Expalin about Kubenetes Master Architecture or Components?
+ 3. Explain about Kubernetes Slave Architecture or Components?
+ 4. What is NGINX in Kubernetes?
+ 5. What is Ingress/Egress in Kubernetes? What are advantages of Ingress/Egress?
+ 6. What to manage large no. of applications in K8S?
+ 7. How to create customized secrets in Kubenetes?
+ 8. What is Kube-System, Kubeadm, Kubelet, etcd & Kubeproxy?
+ 9. How to handle load balancing in Kubernetes?
+10. How to enable Auto-Scaling?
+11. What is MiniKube?
+12. What are deployment Strategies in Kubernetes?
+13. How to identify issues in Kubernetes?
+14. What is difference between Liveness Probes & ReadinessProbes?
+15. What is statefulset in Kubernetes?
+16. What is POD & how to configure PODS in K8S?
+17. What is Piller POD in K8S?
+18. Explain about Deployment Steps in K8S for deploying any application?
+19. How to create a POD in K8S?
+20. What is ConfigMap in K8S and how to configure ConfigMap?
+21. What are storage volumes in K8S & how to create PV & PVC?
+22. Can you explain any real-time issues in K8S?
+23. How to validate Kubernetes by using validators?
+
+===============================================================
+Docker Interview Questions:

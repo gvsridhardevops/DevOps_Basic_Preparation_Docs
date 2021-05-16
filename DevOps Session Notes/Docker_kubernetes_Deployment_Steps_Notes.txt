@@ -1,0 +1,283 @@
+Sample Docker Files
+===================
+FROM openjdk:8-jdk-alpine
+VOLUME /tmp
+ADD target/springboot-kubernetes-0.0.1-SNAPSHOT.jar app.jar
+EXPOSE 8081
+ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -jar app.jar"]
+
+FROM java:8
+EXPOSE 8081
+ADD target/docker-demo.jar docker-demo.jar
+ENTRYPOINT ["java", "-jar", "docker-demo.jar"]
+
+
+// First Create DockerHub & GitHub
+
+Steps to deploy an Spring Application in Docker Container
+=========================================================
+// To Build a Docker File.
+docker build -t docker-demo .
+
+docker run -p 8080:8080 imagename=docker-demo
+
+// To see the list of docker images
+docker images
+
+// To tag docker image in docker hub
+docker tag docker-demo gvsridhardevops/docker-demo
+docker tag shopfront gvsridhardevops/shoppingcart
+
+// To push the docker image to docker hub
+docker push gvsridhardevops/docker-demo
+docker images
+
+// To run the docker image on docker container from docker hub
+docker run -p 8080:8080 gvsridhardevops/docker-demo
+
+// To pull the docker images from docker hub to our local VM
+docker push gvsridhardevops/docker-demo
+docker images
+
+// To Remove Docker Images from docker hub
+docker rmi docker-demo gvsridhardevops/docker-demo
+
+===========================================================================
+Example for both Docker & Kubernetes deployment for Java Spring Application
+https://www.oreilly.com/content/how-to-manage-docker-containers-in-kubernetes-with-java/
+
+//clone from git repo and start working on below steps
+https://github.com/danielbryantuk/oreilly-docker-java-shopping/
+===========================================================================
+Steps to deploy an Spring Application in Docker Container with TagName
+======================================================================
+// To Create a Container
+docker create shopfront
+
+// To check docker Running Containers
+docker ps or docker ps -a
+
+// To Start Container
+docker start 65bt890567 (first 11 digits of ContainerID)
+docker ps
+
+// To Build a Docker File with ApplicationName.
+docker build -t <dockerhub_user>/<dockerhub_repository>:<tagname_version> .
+docker build -t gvsridhardevops/shopfront:shopfront-1.0 .
+
+// To see the list of docker images
+docker images
+
+// To tag docker image in docker hub
+docker tag <ImageName/ApplicationName> <dockerhub_user>/<dockerhub_repository>:<tagname_version>
+docker tag shopfront gvsridhardevops/shopfront:shopfront-1.0
+
+// To Commit docker image with container ID in docker hub
+docker commit <containerId/containerName> <dockerhub_user>/<dockerhub_repository>:<tagname_version>
+docker commit <containerId/containerName> gvsridhardevops/shopfront:shopfront-1.0
+
+// To push the docker image to docker hub
+docker push <dockerhub_user>/<dockerhub_repository>:<tagname_version>
+docker push gvsridhardevops/shopfront:shopfront-1.0
+docker images
+
+// To run the docker image on docker container from docker hub
+docker run -p <applicationPort:DockerPort> <dockerhub_user>/<dockerhub_repository>:<tagname_version>
+docker run -p 8010:8010 gvsridhardevops/shopfront:shopfront-1.0
+docker run -p 8010:8010 --image=shopfront
+
+docker run -p 8020:8020 gvsridhardevops/productcatalogue:productcatalogue-1.0
+docker run -p 8030:8030 gvsridhardevops/stockmanager:stockmanager-1.0
+
+// To pull the docker images from docker hub to our local VM
+docker pull gvsridhardevops/shopfront:shopfront
+docker images
+
+// To Remove Docker Images from docker hub
+docker rmi <ImageName/ApplicationName> <dockerhub_user>/<dockerhub_repository>:<tagname_version>
+docker rmi shopfront gvsridhardevops/shopfront:shopfront-1.0
+
+// To Kill Port/ Process ID
+netstat -ano | findstr :<PORT>
+taskkill /PID <PID> /F
+
+// To Stop all Containers
+docker stop $(docker ps -aq)
+
+============================================================
+Steps to deploy an Spring application in Kubernetes
+============================================================
+// To Start firstly install Docker & Kubernetes and then open the PowerShell/GitBash
+// To cross-verify about kubernetes
+// To get kubernetes Version
+kubectl version
+
+// To get kubernetes cluster information
+kubectl cluster-info
+
+// To get the secrets on kube-system to launch the Kubernetes Dashboard 
+kubectl get secrets -n kube-system
+kubectl get pods -A
+kubectl -n kube-system describe secret replicaset-controller-token-XXXXX
+
+// To launch the Kubernetes Dashboard or Kubernetes UI
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.3/aio/deploy/recommended.yaml
+
+// To get Kubernetes Dashboard WEB UI & Kubernetes Port To run the application
+kubectl proxy
+
+// Copy & paste below link on broswer to open the Kubernetes Dashboard on Web Browser (IE/Chrome/Firefox)
+// Once opened it asks for Token/KubeConfig-file to login to Kubernetes Dashboard
+// Then copy the secretkey from previous step (kubectl -n kube-system describe secret replicaset-controller-token-XXXXX)
+// Token pasted then submit, re-direct to kubernetes Dashboard
+http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
+
+// Back to PowerShell/GitBash & got the project local path (C:\Users\server\DevOps_Practise\ApplicationName)
+// To get list of nodes in Kubernetes
+kubectl get nodes
+
+// To create a service/deployment files 
+kubectl create -f shopfront-service.yaml (OR) kubectl apply -f shopfront-service.yaml
+
+// To create a deployment file on kubernetes from docker hub
+kubectl create deployment docker-demo --image=gvsridhardevops/docker-demo --port=8082
+kubectl create deployment shopfront --image=gvsridhardevops/shopfront:shopfront-1.0 --port=8010
+kubectl create deployment productcatalogue --image=gvsridhardevops/productcatalogue:productcatalogue-1.0 --port=8020
+kubectl create deployment stockmanager --image=gvsridhardevops/stockmanager:stockmanager-1.0 --port=8030
+
+// To expose port numbers for communicating between docker & Kubernetes through LoadBalancer
+kubectl expose deployment shopfront --type=LoadBalancer --name=shopfront-service
+kubectl expose deployment productcatalogue --type=LoadBalancer --name=productcatalogue-service
+kubectl expose deployment stockmanager --type=LoadBalancer --name=stockmanager-service
+
+// To get LoadBalancing PODS
+kubectl get replicasets
+kubectl describe replicasets
+
+// To run the application using Exernal_IP
+kubectl get services shopfront-service
+
+// To get list of deployments in Kubernetes
+kubectl get deployments
+
+// To expose port numbers for communicating between docker & Kubernetes
+kubectl expose deployment docker-demo --type=NodePort --port=8081
+kubectl expose deployment shopfront --type=NodePort --port=8010
+
+//To run a deployment file on kubernetes from docker hub
+kubectl run docker-demo --image=gvsridhardevops/docker-demo --port=8081
+kubectl run shopfront --image=gvsridhardevops/shopfront:shopfront-1.0 --port=8010
+kubectl run productcatalogue --image=gvsridhardevops/productcatalogue:productcatalogue-1.0 --port=8020
+kubectl run stockmanager --image=gvsridhardevops/stockmanager:stockmanager-1.0 --port=8030
+
+// To get list of services in Kubernetes
+kubectl get services
+
+// To get list of nodes in Kubernetes
+kubectl describe svc hello-minikube
+
+// To get POD Replicas data - Load Balancing
+kubectl scale --replicas=3 deployment/docker-demo
+
+// To delete the service/deployment
+kubectl delete service shopfront-service
+
+=======================================================================
+Setting Up & Creating Jenkins Container Using Docker
+=======================================================================
+docker pull jenkins/jenkins
+docker run -p 9090:8080 --name=jenkins-master jenkins/jenkins
+http://localhost:9090
+
+docker stop jenkins-master
+docker rm jenkins-master
+// If we dont want to see Jenkins logs
+docker run -p 9090:8080 --name=jenkins-master -d --env JAVA_OPTS="-Xmx8192m" jenkins/jenkins
+
+docker stop jenkins-master
+docker rm jenkins-master
+// Run Jenkins with Memory Settings
+docker run -p 9090:8080 --name=jenkins-master -d --env JAVA_OPTS="-Xmx8192m" jenkins/jenkins
+
+docker stop jenkins-master
+docker rm jenkins-master
+//Increase jenkins Connection Pool
+docker run -p 9090:8080 --name=jenkins-master -d --env JAVA_OPTS="-Xmx8192m" --env JENKINS_OPTS=" --handlerCountMax=300" jenkins/jenkins
+
+=======================================================================
+Setting Up & Creating Jenkins Container Using Docker
+=======================================================================
+Dockerised Installation of TeamCity Server and Agent in Windows
+1. docker pull jetbrains/teamcity-server
+2. docker pull jetbrains/teamcity-agent
+3. docker run -p 9111:8111 jetbrains/teamcity-server [Example: docker run -p 9090:8080 jenkins/jenkins]
+4. docker run -d SERVER_URL="http://teamcity-server-instance:8111" --link teamcity-server-instance jetbrains/teamcity-agent
+
+
+===================================================================================================================================
+// To Install Ingress Container
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/nginx-0.30.0/deploy/static/mandatory.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/nginx-0.30.0/deploy/static/provider/cloud-generic.yaml
+
+===================================================================================================================================
+
+https://rominirani.com/tutorial-getting-started-with-kubernetes-with-docker-on-mac-7f58467203fd
+
+https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/
+
+https://github.com/kubernetes/dashboard
+
+https://kubernetes.io/blog/2020/05/21/wsl-docker-kubernetes-on-the-windows-desktop/
+
+https://docs.aws.amazon.com/eks/latest/userguide/dashboard-tutorial.html
+
+https://www.replex.io/blog/how-to-install-access-and-add-heapster-metrics-to-the-kubernetes-dashboard
+
+https://dzone.com/articles/how-to-install-the-kubernetes-dashboard
+
+https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#-strong-getting-started-strong-
+
+https://upcloud.com/community/tutorials/deploy-kubernetes-dashboard/
+
+https://docs.aws.amazon.com/eks/latest/userguide/dashboard-tutorial.html
+
+https://www.oreilly.com/content/how-to-manage-docker-containers-in-kubernetes-with-java/
+
+https://www.programmersought.com/article/82683889329/
+
+https://about.gitlab.com/blog/2020/03/09/gitlab-eks-integration-how-to/
+
+============================================================================================================
+
+kubectl create -f https://raw.githubusercontent.com/kubernetes/heapster/master/deploy/kube-config/influxdb/influxdb.yaml
+
+kubectl create -f https://raw.githubusercontent.com/kubernetes/heapster/master/deploy/kube-config/influxdb/heapster.yaml
+
+kubectl create -f https://raw.githubusercontent.com/kubernetes/heapster/master/deploy/kube-config/influxdb/grafana.yaml
+
+http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/
+
+https://collabnix.com/kubernetes-dashboard-on-docker-desktop-for-windows-2-0-0-3-in-2-minutes/
+
+docker-machine.exe create --driver hyperv --hyperv-virtual-switch "Primary Virtual Switch" --hyperv-cpu-count "1" --hyperv-memory "1024" --hyperv-disk-size "20000" mydockervm
+
+"${DOCKER_MACHINE}" create -d virtualbox $PROXY_ENV "${VM}"
+
+"${DOCKERMACHINE}" create -d virtualbox --virtualbox-no-vtx-check $PROXYENV "${VM}"
+
+dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+
+minikube start --vm-driver hyperv --hyperv-virtual-switch "Primary Virtual Switch"
+
+minikube start --driver=docker
+
+dism /Online /Disable-Feature:Microsoft-Hyper-V
+
+https://www.elastic.co/guide/en/elastic-stack-get-started/current/get-started-docker.html
+
+===============================================================================================================
+
+kubectl run hello-world --replicas=2 --labels="run=LoadBalancer" --image=gcr.io/google-samples/node-hello:1.0  --port=8080
+
+gitlab access token - 6Uyhk59C2ReKsmiz4xEi
+
